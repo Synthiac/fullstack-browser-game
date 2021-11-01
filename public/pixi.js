@@ -60,14 +60,6 @@ function setupControls() {
     window.addEventListener("keyup", onkeyup);
 }
 
-function gameLoop() {
-    player.update();
-    coin.update();
-    monsters.forEach(c => {
-        c.update();
-    });
-}
-
 // resize
 window.onresize = () => {
     let d = document.querySelector("div#canvas");
@@ -83,6 +75,5 @@ let pressed = {};
 
 app.renderer.backgroundColor = 0x456268;
 document.querySelector("div#canvas").appendChild(app.view);
-setInterval(gameLoop, 1000 / 60);
 setupControls();
 window.onresize();
