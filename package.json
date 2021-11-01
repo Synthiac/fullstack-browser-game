@@ -1,0 +1,30 @@
+{
+  "name": "fullstack-browser-game",
+  "version": "1.0.0",
+  "description": "A fullstack Browser Game with SQL backed player interaction.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DivineMayura/fullstack-browser-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DivineMayura/fullstack-browser-game/issues"
+  },
+  "homepage": "https://github.com/DivineMayura/fullstack-browser-game#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.8.0"
+  }
+}
