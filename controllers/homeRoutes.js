@@ -1,12 +1,8 @@
 const router = require('express').Router();
-// const { Comment, User, Level } = require('../models');
+const path = require('path');
 
-router.get("/login", async (req, res) => {
-    if (!req.session.logged_in) {
-        res.redirect("/homepage");
-        return;
-    }
-    res.render("login");
-});
+router.get('/', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 module.exports = router;
