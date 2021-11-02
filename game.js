@@ -29,7 +29,7 @@ function preload() {
     this.load.image('sky', '/assets/sky.png');
     this.load.image('ground', '/assets/platform.png');
     this.load.image('star', '/assets/bomb.png');
-    this.load.spritesheet('dude', '/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('king', '/assets/characters.png', { frameWidth: 32, frameHeight: 32 });
 }
 
 function create() {
@@ -45,27 +45,27 @@ function create() {
     movingPlatform.body.allowGravity = false;
     movingPlatform.setVelocityX(50);
 
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(80, 400, 'king');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
         frameRate: 30,
         repeat: -1
     });
 
     this.anims.create({
         key: 'turn',
-        frames: [{ key: 'dude', frame: 4 }],
+        frames: [{ key: 'king', frame: 5 }],
         frameRate: 30
     });
 
     this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
         frameRate: 30,
         repeat: -1
     });
