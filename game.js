@@ -44,10 +44,10 @@ function create() {
     this.add.image(300, 450, 'cloud4');
 
     platforms = this.physics.add.staticGroup();
-    
+    clouds = this.physics.add.staticGroup();
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-   
+    clouds.create(500, 668, 'cloud1').setScale(2).refreshBody();
 
 
     movingPlatform = this.physics.add.image(400, 400, 'ground');
@@ -55,12 +55,7 @@ function create() {
     movingPlatform.body.allowGravity = false;
     movingPlatform.setVelocityX(50);
     
-
-    clouds = this.physics.add.staticGroup();
-    clouds.create(500, 668, 'cloud1').setScale(2).refreshBody();
-
-    
-    movingClouds = clouds.physics.add.image(500, 250, 'cloud1');
+    movingClouds = this.physics.add.image(500, 250, 'cloud1');
     movingClouds.setImmovable(true);
     movingClouds.body.allowGravity = false;
     movingClouds.setVelocityX(50);
