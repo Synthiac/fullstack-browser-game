@@ -1,3 +1,43 @@
+const PIXI = require('pixi.js')
+
+
+//controls for key events
+function setupControls() {
+    window.addEventListener("keydown", onkeydown);
+    window.addEventListener("keyup", onkeyup);
+}
+
+// resize
+window.onresize = () => {
+    let d = document.querySelector("div#canvas");
+    w = d.clientWidth;
+    h = w;
+    app.renderer.resize(w, h);
+}
+
+let w = 512, h = 512;
+let app = new PIXI.Application({
+    view: canvas,
+    width: w,
+    height: h,
+    antialias: true
+});
+let pressed = {};
+
+canvas.backgroundColor = 0x456268;
+const canvas = document.getElementById('canvas')
+canvas.appendChild(app.view);
+setupControls();
+window.onresize();
+
+const texture = PIXI.Texture.from('/images/sprite.jpg');
+const img = new PIXI.Sprite(texture)
+img.x = app.renderer.width / 2;
+img.y = app.renderer.height / 2;
+img.anchor.x = 0.5;
+img.anchor.y = 0.5;
+app.stage.addChild(img);
+
 
 //up and down key events
 function onkeydown(ev) {
@@ -54,26 +94,11 @@ function onkeyup(ev) {
             break;
     }
 }
-//controls for key events
-function setupControls() {
-    window.addEventListener("keydown", onkeydown);
-    window.addEventListener("keyup", onkeyup);
-}
 
-// resize
-window.onresize = () => {
-    let d = document.querySelector("div#canvas");
-    w = d.clientWidth;
-    h = w;
-    app.renderer.resize(w, h);
-    reset();
-}
 
-let w = 512, h = 512;
-let app = new PIXI.Application({ width: w, height: h, antialias: true });
-let pressed = {};
 
-app.renderer.backgroundColor = 0x456268;
-document.querySelector("div#canvas").appendChild(app.view);
-setupControls();
-window.onresize();
+
+
+
+
+
