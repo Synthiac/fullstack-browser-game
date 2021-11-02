@@ -1,4 +1,3 @@
-
 //up and down key events
 function onkeydown(ev) {
     switch (ev.key) {
@@ -60,20 +59,21 @@ function setupControls() {
     window.addEventListener("keyup", onkeyup);
 }
 
-// resize
-window.onresize = () => {
-    let d = document.querySelector("div#canvas");
-    w = d.clientWidth;
-    h = w;
-    app.renderer.resize(w, h);
-    reset();
-}
+// app.stage, view and use
+// PIXI.utils.TextureCache["assets/images/characters.png"]
+// refernece texture code
+// sample texture
+// const charTexture = PIXI.Utils.TextureCache['./assets/images/characters.png'];
 
-let w = 512, h = 512;
-let app = new PIXI.Application({ width: w, height: h, antialias: true });
-let pressed = {};
+// const sprite = new PIXI.Sprite(charTexture);
 
-app.renderer.backgroundColor = 0x456268;
-document.querySelector("div#canvas").appendChild(app.view);
-setupControls();
-window.onresize();
+// PIXI.Loader.shared
+//   .add("images/anyImage.png")
+//   .load(setup);
+
+// function setup() {
+  //This code will run when the loader has finished loading the image
+// }
+
+// PIXI.Loader.shared
+// .add()
