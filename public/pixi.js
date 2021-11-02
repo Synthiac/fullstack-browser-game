@@ -1,3 +1,24 @@
+// resize
+window.onresize = () => {
+    let d = document.querySelector("div#canvas");
+    w = d.clientWidth;
+    h = w;
+    app.renderer.resize(w, h);
+    reset();
+}
+
+let w = 512, h = 512;
+let app = new PIXI.Application({ 
+    width: w, 
+    height: h, 
+    antialias: true });
+let pressed = {};
+// resize on size, set fixed
+app.renderer.backgroundColor = 0x456268;
+document.querySelector("div#canvas").appendChild(app.view);
+setupControls();
+window.onresize();
+
 
 //up and down key events
 function onkeydown(ev) {
@@ -60,20 +81,5 @@ function setupControls() {
     window.addEventListener("keyup", onkeyup);
 }
 
-// resize
-window.onresize = () => {
-    let d = document.querySelector("div#canvas");
-    w = d.clientWidth;
-    h = w;
-    app.renderer.resize(w, h);
-    reset();
-}
-
-let w = 512, h = 512;
-let app = new PIXI.Application({ width: w, height: h, antialias: true });
-let pressed = {};
-
-app.renderer.backgroundColor = 0x456268;
-document.querySelector("div#canvas").appendChild(app.view);
-setupControls();
-window.onresize();
+app.stage
+PIXI.utils.TextureCache[""]
