@@ -6,7 +6,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 400 },
+            gravity: { y: 300 },
             debug: false
         }
     },
@@ -26,24 +26,44 @@ var movingPlatform;
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('sky', '/assets/sky.png');
+    this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
     this.load.image('star', '/assets/bomb.png');
     this.load.spritesheet('king', '/assets/characters.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.image('cloud1', '/assets/cloud8.png')
+    this.load.image('cloud2', '/assets/cloud7.png')
+    this.load.image('cloud3', '/assets/cloud6.png')
+    this.load.image('cloud4', '/assets/cloud5.png')
 }
 
 function create() {
     this.add.image(400, 300, 'sky');
+    this.add.image(600, 250, 'cloud1');
+    this.add.image(700, 150, 'cloud2');
+    this.add.image(750, 400, 'cloud3');
+    this.add.image(300, 450, 'cloud4');
 
     platforms = this.physics.add.staticGroup();
+    
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+   
 
 
     movingPlatform = this.physics.add.image(400, 400, 'ground');
     movingPlatform.setImmovable(true);
     movingPlatform.body.allowGravity = false;
     movingPlatform.setVelocityX(50);
+    
+
+    clouds = this.physics.add.staticGroup();
+    clouds.create(500, 668, 'cloud1').setScale(2).refreshBody();
+
+    
+    movingClouds = clouds.physics.add.image(500, 250, 'cloud1');
+    movingClouds.setImmovable(true);
+    movingClouds.body.allowGravity = false;
+    movingClouds.setVelocityX(50);
 
     player = this.physics.add.sprite(80, 400, 'king');
 
@@ -87,6 +107,7 @@ function create() {
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, movingPlatform);
     this.physics.add.collider(stars, platforms);
+    this.physics.add.collider(stars, movingPlatform);
     this.physics.add.collider(stars, movingPlatform);
 
     this.physics.add.overlap(player, stars, collectStar, null, this);
