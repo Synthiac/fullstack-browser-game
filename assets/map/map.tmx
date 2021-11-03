@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <export target="map.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="384" columns="24">
+  <image source="../../../CleanedTileSet.png" width="384" height="256"/>
+  <wangsets>
+   <wangset name="Unnamed Set" type="corner" tile="-1">
+    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
+    <wangtile tileid="0" wangid="0,1,0,1,0,1,0,1"/>
+    <wangtile tileid="1" wangid="0,0,0,0,0,0,0,1"/>
+    <wangtile tileid="24" wangid="0,1,0,1,0,1,0,1"/>
+   </wangset>
+  </wangsets>
+ </tileset>
+ <layer id="1" name="Interactive" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,151,0,0,151,0,0,0,0,151,0,0,0,0,0,
+1,25,25,1,25,25,25,1,25,1,1,25,1,25,1,1,1,1,1,25,
+1,1,1,1,1,25,1,25,25,1,25,25,1,25,25,25,1,25,25,1,
+1,1,1,25,1,25,1,25,25,1,25,25,25,25,25,25,25,25,25,1,
+25,25,25,25,1,1,1,25,1,25,1,25,1,1,25,25,1,1,1,25
+</data>
+ </layer>
+</map>
