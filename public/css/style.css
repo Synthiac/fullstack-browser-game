@@ -42,6 +42,7 @@ canvas {
 
 #comments {
   width: fit-content;
+  margin-left: 15px;
 }
 
 .styleButton {
@@ -67,7 +68,18 @@ canvas {
   margin:30px;
 }
 
+#buttonContainer{
+  display:flex;
+  flex-direction: row;
+  margin-bottom:10px;
+}
 
+
+.line{
+  background-color: var(--lime);
+  width:50vw;
+  height:2px;
+}
 
 .mayColorText {
   color: var(--lime) !important;
