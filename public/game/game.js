@@ -29,16 +29,16 @@ var movingPlatform;
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('sky', '/assets/background3.png');
-    this.load.image('ground', '/assets/platform.png');
-    this.load.image('star', '/assets/Bolt.png');
-    this.load.spritesheet('king', '/assets/character.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.image('cloud1', '/assets/cloud8.png');
-    this.load.image('cloud2', '/assets/cloud7.png');
-    this.load.image('cloud3', '/assets/cloud6.png');
-    this.load.image('cloud4', '/assets/cloud5.png');
-    this.load.image('lightning', '/assets/lighting.png');
-    this.load.audio("theme", "/assets/theme.mp3");
+    this.load.image('sky', '../assets/background3.png');
+    this.load.image('ground', '../assets/platform.png');
+    this.load.image('star', '../assets/Bolt.png');
+    this.load.spritesheet('king', '../assets/character.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.image('cloud1', '../assets/cloud8.png');
+    this.load.image('cloud2', '../assets/cloud7.png');
+    this.load.image('cloud3', '../assets/cloud6.png');
+    this.load.image('cloud4', '../assets/cloud5.png');
+    this.load.image('lightning', '../assets/lighting.png');
+    this.load.audio("theme", "../assets/theme.mp3");
 }
 
 function create() {
