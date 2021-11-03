@@ -1,7 +1,7 @@
 
-const seedLevel = require('./seedLevel');
-const seedUser = require("./seedUser");
-const seedComment = require("./seedComment");
+const seedLevel = require('./levelSeed');
+const seedUser = require("./userSeed");
+const seedComment = require("./commentSeed");
 
 const sequelize = require('../config/connection');
 

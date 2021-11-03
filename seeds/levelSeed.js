@@ -1,6 +1,6 @@
 const { Level } = require("../models");
 
-const blogData = [
+const levelData = [
     {
         id: 1,
         level_name: "The Beginning.",
