@@ -19,11 +19,14 @@ var config = {
         preload: preload,
         create: create,
         update: update
+        // add scale manager for full scene deployment
     }
 };
+var game = new Phaser.Game(config);
+
 
 function preload() {
-    this.load.image('tile', '/assests/map/mytileset.json')
+    // this.load.image('tile', '/assests/map/mytileset.json'), embeded
     this.load.tilemapTiledJSON('map', '/assets/map/map.json');
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
@@ -33,11 +36,11 @@ function preload() {
     this.load.image('cloud2', '/assets/cloud7.png');
     this.load.image('cloud3', '/assets/cloud6.png');
     this.load.image('cloud4', '/assets/cloud5.png');
-    this.load.image('lightning', '/assets/lighting.png'); 
+    this.load.image('lightning', '/assets/lightning.png'); 
     this.load.audio("theme", "/assets/theme.mp3");
 }
 
-var game = new Phaser.Game(config);
+
 var player;
 var bolt;
 var platforms;
@@ -45,15 +48,18 @@ var cursors;
 var movingPlatform;
 var map;
 var groundLayer;
-var tileSet
+var tileSet;
+var moveCam = true;
 
 
 
 
 function create() {
-    map = this.make.tilemap({ key: "map" });
-    var tileSet = map.addTilestImage("tileset", "tiles");
-    var groundLayer = map.createStaticLayer('Tiles', tileSet, 0, 0);
+    // var tileSet = map.addTilestImage("tileset", "tiles");
+    // var groundLayer = map.createStaticLayer('Tiles', tileSet, 0, 0);
+
+// this.physics.world.bounds.width = groundLayer.width;
+// this.physics.world.bounds.height = groundLayer.height;
 
     // this.add.image(400, 300, 'sky');
     // this.add.image(600, 250, 'cloud1');
@@ -132,12 +138,12 @@ function create() {
     // this.physics.add.collider(bolt, movingPlatform);
     // this.physics.add.collider(bolt, movingPlatform);
 
-    this.physics.add.overlap(player, bolt, collectBolt, null, this);
-    theme = this.sound.add("theme");
-    theme.play({
-    volume: 0.2,
-    loop: true
-  });
+//     this.physics.add.overlap(player, bolt, collectBolt, null, this);
+//     theme = this.sound.add("theme");
+//     theme.play({
+//     volume: 0.2,
+//     loop: true
+//   });
 }
 
 
@@ -167,12 +173,12 @@ function update() {
         player.setVelocityY(-330);
     }
 
-    if (movingPlatform.x >= 500) {
-        movingPlatform.setVelocityX(-50);
-    }
-    else if (movingPlatform.x <= 300) {
-        movingPlatform.setVelocityX(50);
-    }
+    // if (movingPlatform.x >= 500) {
+    //     movingPlatform.setVelocityX(-50);
+    // }
+    // else if (movingPlatform.x <= 300) {
+    //     movingPlatform.setVelocityX(50);
+    // }
 }
 // function cloudMovement(){
 //     if (movingCloud.x >= 500) {
