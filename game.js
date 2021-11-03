@@ -173,4 +173,13 @@ function cloudMovement(){
 function collectStar(player, star) {
     console.log("duck")
     star.disableBody(true, true);
+
+
+    // This is the route that gets our comments
+    // corresponds to in game event trigger
+    // if(){
+    //     const response = await fetch(`/${:id}`, {
+    //         method: "GET"
+    //     })
+    // }
 }
