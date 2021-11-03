@@ -21,7 +21,7 @@ var config = {
 };
 
 var player;
-var stars;
+var bolt;
 var platforms;
 var cursors;
 var movingPlatform;
@@ -31,7 +31,7 @@ var game = new Phaser.Game(config);
 function preload() {
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
-    this.load.image('star', '/assets/Bolt.png');
+    this.load.image('bolt', '/assets/Bolt.png');
     this.load.spritesheet('king', '/assets/character.png', { frameWidth: 32, frameHeight: 32 });
     this.load.image('cloud1', '/assets/cloud8.png');
     this.load.image('cloud2', '/assets/cloud7.png');
@@ -101,13 +101,13 @@ function create() {
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    stars = this.physics.add.group({
-        key: 'star',
+    bolt = this.physics.add.group({
+        key: 'bolt',
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
 
-    stars.children.iterate(function (child) {
+    bolt.children.iterate(function (child) {
 
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
@@ -115,11 +115,11 @@ function create() {
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(player, movingPlatform);
-    this.physics.add.collider(stars, platforms);
-    this.physics.add.collider(stars, movingPlatform);
-    this.physics.add.collider(stars, movingPlatform);
+    this.physics.add.collider(bolt, platforms);
+    this.physics.add.collider(bolt, movingPlatform);
+    this.physics.add.collider(bolt, movingPlatform);
 
-    this.physics.add.overlap(player, stars, collectStar, null, this);
+    this.physics.add.overlap(player, bolt, collectBolt, null, this);
     theme = this.sound.add("theme");
     theme.play({
     volume: 0.2,
@@ -169,8 +169,8 @@ function cloudMovement(){
         movingCloud.setVelocityX(50);
     }
 }
-
-function collectStar(player, star) {
-    console.log("duck")
-    star.disableBody(true, true);
+//action of picking up bolt, session or db relationship
+function collectBolt(player, bolt) {
+    console.log("points up")
+    bolt.disableBody(true, true);
 }
