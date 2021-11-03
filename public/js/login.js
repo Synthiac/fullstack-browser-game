@@ -62,3 +62,86 @@ if (document.getElementById("signInDiv")) {
                 .setAttribute("style", "display: none")
         });
 };
+
+
+async function loginForm(event) {
+    event.preventDefault();
+    //inputs i need for login
+    const username = document.querySelector("#email-login").value.trim();
+    const password = document.querySelector("#password-login").value.trim();
+
+    //make sure these have content
+    if (username && password) {
+        //fetch from my route
+        const response = await fetch("/api/users/", {
+            method: "POST",
+            body: JSON.stringify({
+                username,
+                password,
+            }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (response.ok) {
+            console.log(response, " Logged in successfully!");
+            loginModal.setAttribute("style", "display: none")
+            // document.location.replace("/");
+        } else {
+            alert(response.statusText);
+        }
+    }
+}
+
+
+async function signupForm(event) {
+    event.preventDefault();
+
+    const username = document.querySelector("#name-signup").value.trim();
+    const email = document.querySelector("#email-signup").value.trim();
+    const password = document.querySelector("#password-signup").value.trim();
+
+    if (username && email && password) {
+        const response = await fetch("/api/users/create", {
+            method: "POST",
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+            headers: { "Content-Type": "application/json" },
+        });
+        console.log(username, email, password);
+
+        if (response.ok) {
+            console.log(response);
+        } else {
+            alert(response.statusText);
+        }
+    }
+    // login / signup same time
+    const responseTwo = await fetch("/api/users/", {
+        method: "POST",
+        body: JSON.stringify({
+            username,
+            password,
+        }),
+        headers: { "Content-Type": "application/json" },
+    });
+
+    if (responseTwo.ok) {
+        alert("Signed up & Logged in successfully!");
+        loginModal.setAttribute("style", "display: none")
+    } else {
+        //alert sending response from login attempt
+        alert(responseTwo.statusText);
+    }
+}
+
+
+document
+    .querySelector("#loginBtn")
+    .addEventListener("click", loginForm);
+
+document
+    .querySelector("#signupBtn")
+    .addEventListener("click", signupForm);

@@ -13,10 +13,10 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- custom css -->
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 
-    <script type="text/javascript" src="/phaser.min.js"></script>
+    <script type="text/javascript" src="/game/phaser.min.js"></script>
 </head>
 
 <body>
@@ -63,7 +63,7 @@
     </nav>
 
     <div id="gameContainer">
-        <script id="gameContainer" type="text/javascript" src="/game.js"></script>
+        <script id="gameContainer" type="text/javascript" src="/game/game.js"></script>
     </div>
 </body>
 
@@ -98,24 +98,24 @@
                     <input class="form-input" type="password" id="password-signup" />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" type="submit">signup</button>
-                  </div>
+                    <button class="btn btn-primary" type="submit" id="signupBtn">signup</button>
+                </div>
             </form>
         </div>
         <div class="modalBody">
             <form id="signInForm">
                 <div class="form-group">
-                  <label for="email-login">email:</label>
-                  <input class="form-input" type="text" id="email-login" />
+                    <label for="email-login">email:</label>
+                    <input class="form-input" type="text" id="email-login" />
                 </div>
                 <div class="form-group">
-                  <label for="password-login">password:</label>
-                  <input class="form-input" type="password" id="password-login" />
+                    <label for="password-login">password:</label>
+                    <input class="form-input" type="password" id="password-login" />
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary" type="submit">login</button>
+                    <button class="btn btn-primary" type="submit" id="loginBtn">login</button>
                 </div>
-              </form>
+            </form>
         </div>
         <div class="modalFooter">
             <h3>Modal Footer</h3>
@@ -131,5 +131,6 @@
 
 <!-- Custom JavaScript -->
 <script src="js/login.js"></script>
+<script src="js/createComment.js"></script>
 
 </html>
