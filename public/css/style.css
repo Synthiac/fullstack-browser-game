@@ -1,6 +1,6 @@
 :root {
     --lime: #49FF06;
-    --darkBg: #301B25;
+    --darkBg: #300015;
     --lightBg: #560025;
     --magenta: #FF0D35;
     --cyan: #29C6C7;
@@ -18,18 +18,79 @@
 body{
     display:flex;
     flex-direction: column;
-    background-color: var(darkBg);
+    background-color: var(--darkBg);
 }
 
 canvas {
     align-self: center;
     width: 1000px;
+    order: 1;
+    margin: 20px;
+}
+
+#commentSection{
+  margin-top:30px;
+  order:2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-start;
+  background-color: var(--lightBg);
+  padding-top:10px;
+}
+
+#comments {
+  width: fit-content;
+  margin-left: 15px;
+}
+
+.styleButton {
+  background-color: transparent;
+  color: var(--lime);
+  border-color:var(--lime);
+  border-style: solid;
+  border-width: 2px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.styleButton:hover {
+  position: relative;
+  top:1px;
+  left:1px;
+  box-shadow: 0px 0px 20px var(--lime);
+}
+
+#mayTextBox{
+  display: flex;
+  flex-direction:column;
+  margin:30px;
+}
+
+#buttonContainer{
+  display:flex;
+  flex-direction: row;
+  margin-bottom:10px;
 }
 
 
+.line{
+  background-color: var(--lime);
+  width:50vw;
+  height:2px;
+}
+
+.mayColorText {
+  color: var(--lime) !important;
+}
+
+nav {
+  background-color: var(--lightBg) !important;
+}
 
 #homeButton{
-    background-color: #5cb85c;
+    background-color: transparent;
 }
 #loginModal {
         display: flex;
@@ -37,7 +98,46 @@ canvas {
         flex-direction: column;
         text-align: center;
 }
+#mayDropMenu {
+  background-color: var(--lightBg) !important;
+  border-color: var(--lime) !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+}
+.dropdown-divider {
+  color: var(--lime) !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: transparent !important;
+  color:var(--lime) !important;
+}
 
+.mayhighlight:hover {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.mayglow{
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+.mayglow:hover {
+  box-shadow: 0px 0px 20px var(--lime);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

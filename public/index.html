@@ -15,14 +15,18 @@
     <!-- custom css -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script type="text/javascript" src="/game/phaser.min.js"></script>
+    <script type="text/javascript" src="./game/phaser.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Phaser Game</a>
+            <a class="navbar-brand mayColorText mayglow" href="#">Phaser Game</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -31,28 +35,32 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a id="homeButton" class="nav-link active" aria-current="page" href="#">Login</a>
+                        <a id="homeButton" class="nav-link active mayColorText mayhighlight" aria-current="page"
+                            href="#">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a id="" class="nav-link" href="#">Comments</a>
+                        <a id="" class="nav-link mayColorText mayhighlight" href="#">Comments</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle mayColorText mayhighlight" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             The Creator's Info
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="https://github.com/ghmurphy2" target="_blank">Gavin
+                        <ul id="mayDropMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item mayColorText mayhighlight" href="https://github.com/ghmurphy2"
+                                    target="_blank">Gavin
                                     Murphy</a></li>
-                            <li>
+                            <!-- <li>
                                 <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="https://github.com/DivineMayura" target="_blank">May
+                            </li> -->
+                            <li><a class="dropdown-item mayColorText mayhighlight"
+                                    href="https://github.com/DivineMayura" target="_blank">May
                                     Faucher</a></li>
-                            <li>
+                            <!-- <li>
                                 <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="https://github.com/DerekBanister" target="_blank">Derek
+                            </li> -->
+                            <li><a class="dropdown-item mayColorText mayhighlight"
+                                    href="https://github.com/DerekBanister" target="_blank">Derek
                                     Banister</a>
                             </li>
                         </ul>
@@ -62,9 +70,61 @@
         </div>
     </nav>
 
+
+
     <div id="gameContainer">
         <script id="gameContainer" type="text/javascript" src="/game/game.js"></script>
     </div>
+
+
+
+    <div id="commentSection" class="mayColorText">
+
+    <div id="mayTextBox">
+        <h4 id="foldingText" class="mayColorText">Create A Comment!</h4>
+        <textarea>
+
+        </textarea>
+    </div>
+<div id="buttonContainer">
+    <div>
+        <button class="styleButton" >Submit Comment!</button>
+    </div>
+    <div>
+        <button id="reloadComments" class="styleButton" >Reload Comments</button>
+    </div>
+</div>
+<div>
+    <div class="line"></div>
+</div>
+        <div id="comments">
+            <figure>
+                <blockquote class="blockquote">
+                    <p>CONTENT HEREeeeeeeeeeeeeeeeeeeeeeeeee</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    YOOOOOO
+                </figcaption>
+            </figure>
+            <figure>
+                <blockquote class="blockquote">
+                    <p>CONTENT HERE</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    YOOOOOffffffffO
+                </figcaption>
+            </figure>
+            <figure>
+                <blockquote class="blockquote">
+                    <p>CONTENT HERE</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    YOOOOOO
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+
 </body>
 
 
@@ -121,8 +181,21 @@
             <h3>Modal Footer</h3>
         </div>
     </div>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- JavaScript Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
