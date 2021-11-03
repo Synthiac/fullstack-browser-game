@@ -31,12 +31,13 @@ var game = new Phaser.Game(config);
 function preload() {
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
-    this.load.image('star', '/assets/bomb.png');
+    this.load.image('star', '/assets/Bolt.png');
     this.load.spritesheet('king', '/assets/character.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.image('cloud1', '/assets/cloud8.png')
-    this.load.image('cloud2', '/assets/cloud7.png')
-    this.load.image('cloud3', '/assets/cloud6.png')
-    this.load.image('cloud4', '/assets/cloud5.png')
+    this.load.image('cloud1', '/assets/cloud8.png');
+    this.load.image('cloud2', '/assets/cloud7.png');
+    this.load.image('cloud3', '/assets/cloud6.png');
+    this.load.image('cloud4', '/assets/cloud5.png');
+    this.load.image('lightning', '/assets/lighting.png');
     this.load.audio("theme", "/assets/theme.mp3");
 }
 
@@ -77,6 +78,7 @@ function create() {
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
         frameRate: 30,
         repeat: -1
+        
     });
 
     this.anims.create({
@@ -132,11 +134,15 @@ function update() {
         player.setVelocityX(-160);
 
         player.anims.play('left', true);
+        player.flipX = true;
+        player.body.setVelocityX(-180);
     }
     else if (cursors.right.isDown) {
         player.setVelocityX(160);
 
         player.anims.play('right', true);
+        player.flipX = false;
+        player.body.setVelocityX(180);
     }
     else {
         player.setVelocityX(0);
