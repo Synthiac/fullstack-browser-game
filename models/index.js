@@ -1,6 +1,6 @@
-const User = require("./user");
-const Level = require("./level");
-const Comment = require("./comments");
+const User = require("./User");
+const Level = require("./Level");
+const Comment = require("./Comment");
 
 // basically
 // const levelComment = require("./levelComments");
