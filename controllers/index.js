@@ -3,9 +3,11 @@ const router = require('express').Router();
 // const userRoutes = require("./api/user-routes")
 // const commentRoutes = require("./api/comment-routes")
 
-// router.use('/', homeRoutes);
-// router.use("/api/users", userRoutes);
-// router.use("/api/comments", commentRoutes);
-// router.use('/api', apiRoutes);
+
+router.use('/', homeRoutes);
+router.use("/api/users", userRoutes);
+router.use("/api/comments", commentRoutes);
+
+
 
 module.exports = router;
