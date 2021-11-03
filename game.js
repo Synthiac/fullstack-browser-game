@@ -28,6 +28,7 @@ var game = new Phaser.Game(config);
 function preload() {
     // this.load.image('tile', '/assests/map/mytileset.json'), embeded
     this.load.tilemapTiledJSON('map', '/assets/map/map.json');
+    this.load.image('tileset', '/assets/CleanedTileSet.png')
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
     this.load.image('bolt', '/assets/Bolt.png');
@@ -38,6 +39,7 @@ function preload() {
     this.load.image('cloud4', '/assets/cloud5.png');
     this.load.image('lightning', '/assets/lightning.png'); 
     this.load.audio("theme", "/assets/theme.mp3");
+    
 }
 
 
@@ -55,9 +57,14 @@ var moveCam = true;
 
 
 function create() {
-    // var tileSet = map.addTilestImage("tileset", "tiles");
-    // var groundLayer = map.createStaticLayer('Tiles', tileSet, 0, 0);
+    var map = this.make.tilemap({key: 'map'});
 
+    const tileset = map.addTilesetImage('tileset', 'tiles' );
+    const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
+    const interactiveLayer = map.createStaticLayer('Interactive', tileset, 0, 0);
+    var groundLayer = map.createStaticLayer('tiles', tileSet, 0, 0);
+this.player.setDepth(10)
+groundLayer.setDepth(10)
 // this.physics.world.bounds.width = groundLayer.width;
 // this.physics.world.bounds.height = groundLayer.height;
 
