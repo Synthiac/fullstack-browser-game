@@ -1,5 +1,34 @@
+:root {
+    --lime: #49FF06;
+    --darkBg: #301B25;
+    --lightBg: #560025;
+    --magenta: #FF0D35;
+    --cyan: #29C6C7;
+    --seaFoam: #05F4B7;
+}
 
-.modalOpen{
+
+
+
+
+
+
+
+
+body{
+    display:flex;
+    flex-direction: column;
+    background-color: var(darkBg);
+}
+
+canvas {
+    align-self: center;
+    width: 1000px;
+}
+
+
+
+#homeButton{
     background-color: #5cb85c;
 }
 #loginModal {
@@ -24,13 +53,13 @@
   }
   
   /* Modal Content/Box */
-  .loginModalContent {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
+  /* .loginModalContent { */
+    /* background-color: ; */
+    /* margin: 15% auto; 15% from the top and centered */
+    /* padding: 20px; */
+    /* border: 1px solid #888; */
+    /* width: 80%; Could be more or less, depending on screen size */
+  /* } */
   
   /* The Close Button */
   .closeBtn {
@@ -50,9 +79,27 @@
 /* Modal Header */
 .modalHeader {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: var(--lightBg);
+    color: var(--lime);
+    display:flex;
+    justify-content: space-around;
   }
+  .modalHeader div {
+      padding: 5px;
+      margin: 15px;
+      background-color: transparent;
+      border-style: solid;
+      border-radius: 19px;
+      border-width: 4px;
+      border-color:var(--lime);
+
+  }
+  .modalHeader div:hover{
+    box-shadow: 0px 0px 50px var(--lime);
+    animation-name: selectedGlow;
+    animation-duration: 0.5s;
+  }
+
   
   /* Modal Body */
   .modalBody {padding: 2px 16px;}
@@ -60,25 +107,53 @@
   /* Modal Footer */
   .modalFooter {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: var(--lightBg);
+    color: var(--lime);
   }
+  
   
   /* Modal Content */
   .loginModalContent {
     position: relative;
-    background-color: #fefefe;
+    background-color: rgba(48, 0, 21, .6);
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
-    width: 80%;
+    /* border: 6px solid var(--darkBg); */
+    width: 50vw;
+    height: fit-content;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animateModal;
     animation-duration: 0.4s
   }
+
+  #signUpForm {
+    display: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: space-around;
+    color: white;
+}
+
+#signInForm {
+    display: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: space-around;
+    color: white;
+}
   
   /* Add Animation */
   @keyframes animateModal {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    0% {top: -300px; opacity: 0}
+    100% {top: 0; opacity: 1}
   }
+  @keyframes selectedGlow {
+      0% {box-shadow: 0px 0px 0px var(--lime)}
+      100% {box-shadow: 0px 0px 50px var(--lime)}
+  }
+  /* @keyframes selectedGlow {
+    100% {box-shadow: 0px 0px 0px var(--lime)}
+    0% {box-shadow: 0px 0px 50px var(--lime)}
+} */
