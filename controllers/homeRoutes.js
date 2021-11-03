@@ -7,6 +7,8 @@ router.get('/', (req, res) =>
 );
 
 //get all comments for main page. Can make api call in js to retrive this info
+
+/*
 router.get("/", async (req, res) => {
     try {
         const commentData = await Comment.findAll({
@@ -32,5 +34,6 @@ router.get("/", async (req, res) => {
         res.status(500).json(err)
     }
 })
+*/
 
 module.exports = router;
