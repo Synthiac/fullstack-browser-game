@@ -39,6 +39,18 @@ function preload() {
     this.load.image('skymid', '/assets/background2.png');
     this.load.image('skyfore', '/assets/background1.png');
     this.load.image('skyback', '/assets/background3.png');
+
+    // parallax background
+    // this.game.load.image('b1', 'location')
+    // this.game.load.image('b2', 'location')
+    // this.game.load.image('b3', 'location')
+
+    // this.b1 = this.game.add.tileSprite(0,
+    //     this.game.height - this.game.cache.getImage('b1').height, this.game.width)
+    // this.b2 = this.game.add.tileSprite(0,
+    //     this.game.height - this.game.cache.getImage('b2').height, this.game.width)
+    // this.b3 = this.game.add.tileSprite(0,
+    //     this.game.height - this.game.cache.getImage('b3').height, this.game.width)
 }
 
 
@@ -195,6 +207,11 @@ function create() {
 
 
 function update() {
+
+    // parallax scrolling
+    // this.b1.tilePosition.x -= .05;
+    // this.b2.tilePosition.x -= .1;
+    // this.b3.tilePosition.x -= .15;
     
     if (cursors.left.isDown) {
         player.setVelocityX(-160);
