@@ -7,8 +7,7 @@ router.get("/", async (req, res) => {
         const userData = await User.findAll({
             attributes: ["id",
                 "username",
-                "email",
-                "password"],
+                "email"],
 
         })
         res.json(userData);
