@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: 400,
+    width: 600,
     height: 600,
     parent: 'canvas',
     physics: {
@@ -22,8 +22,7 @@ var game = new Phaser.Game(config);
 
 
 function preload() {
-    // this.load.image('tile', '/assests/map/mytileset.json'), embeded
-    this.load.tilemapTiledJSON('map', '/assets/map/map.json');
+    this.load.tilemapTiledJSON('map', '/assets/map/map.json', '/assets/map/map.tmx');
     this.load.image('terrain', '/assets/map/CleanedTileSet.png', '/assets/map/CleanedTileSet.json');
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
@@ -63,10 +62,10 @@ function create() {
     var map = this.make.tilemap({key: 'map'});
     
 
-const tileSet = map.addTilesetImage('tileset', 'terrain' );
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'terrain' );
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
-var ground = map.createLayer('Interactive', tileSet, 0, 0);
+    var ground = map.createLayer('Tile Layer 1', tileSet, 0, 0);
     // this.player.setDepth(10)
     // ground.setDepth(10)
 // this.physics.world.bounds.width = groundLayer.width;
