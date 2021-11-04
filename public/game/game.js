@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 600,
-    height: 600,
+    width: 1200,
+    height: 1200,
     parent: 'canvas',
     physics: {
         default: 'arcade',
@@ -55,8 +55,7 @@ function create() {
 
     let bg = this.add.image(0, 0, 'sky');
     // Align.scaleToGameW(bg, 2);
-    // this.cameras.main.setBounds(0, 0, bg.displayHeight, bg.displayWidth);
-    // this.cameras.main.startFollow(this.player)
+   
 
 
     var map = this.make.tilemap({key: 'map'});
@@ -65,16 +64,16 @@ function create() {
     const tileSet = map.addTilesetImage('CleanedTileSet', 'terrain' );
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
-    var ground = map.createLayer('Tile Layer 1', tileSet, 0, 0);
+    var ground = map.createLayer('Interactive', tileSet, 0, 0);
     // this.player.setDepth(10)
     // ground.setDepth(10)
 // this.physics.world.bounds.width = groundLayer.width;
 // this.physics.world.bounds.height = groundLayer.height;
 
-    // this.add.image(600, 250, 'cloud1');
-    // this.add.image(700, 150, 'cloud2');
-    // this.add.image(750, 400, 'cloud3');
-    // this.add.image(300, 450, 'cloud4');
+    this.add.image(600, 250, 'cloud1');
+    this.add.image(700, 150, 'cloud2');
+    this.add.image(750, 400, 'cloud3');
+    this.add.image(300, 450, 'cloud4');
 
     // platforms = this.physics.add.staticGroup();
     // clouds = this.physics.add.staticGroup();
@@ -100,6 +99,10 @@ function create() {
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.startFollow(player)
+    this.physics.add.collider(player, groundLayer);
+    this.physics.add.collider(player, ground);
 
     this.anims.create({
  
@@ -142,8 +145,7 @@ function create() {
 
     });
 
-    // this.physics.add.collider(player, platforms);
-    // this.physics.add.collider(player, movingPlatform);
+    
     // this.physics.add.collider(bolt, platforms);
     // this.physics.add.collider(bolt, movingPlatform);
     // this.physics.add.collider(bolt, movingPlatform);
