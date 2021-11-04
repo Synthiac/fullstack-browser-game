@@ -2,21 +2,18 @@
 async function createComment(event) {
     event.preventDefault();
 
-    const title = document.querySelector("#post-body").value.trim();
-    const body = document.querySelector("#post-title").value.trim();
-
+    const body = document.querySelector("#post-body").value.trim();
+    console.log(body);
 
     if (body) {
-        const response = await fetch("/api/comments/", {
+        const response = await fetch("/api/comments", {
             method: "POST",
-            body: JSON.stringify({
-                title,
-                body,
-            }),
+            body: JSON.stringify({ body }),
             headers: {
                 "Content-Type": "application/json",
             }
         })
+        console.log(body)
         if (response.ok) {
             console.log(response)
             window.location.replace("/")
@@ -34,7 +31,7 @@ document
 async function fetchCommentsJSON() {
     const response = await fetch('/api/comments');
     const comments = await response.json();
-    console.log(comments)
+    // console.log(comments)
     return comments;
 
 }
