@@ -16,7 +16,42 @@ async function createComment(event) {
         console.log(body)
         if (response.ok) {
             console.log(response)
-            window.location.replace("/")
+            // window.location.replace("/")
+            // let nested = document.getElementsByClassName("nested")
+            // document.getElementById("comments").removeChild(nested);
+            async function fetchCommentsJSON() {
+                const response = await fetch('/api/comments');
+                const comments = await response.json();
+                // console.log(comments)
+                return comments;
+
+            }
+            fetchCommentsJSON().then(comments => {
+                comments;
+                // console.log(comments[0].commenter)
+                // console.log(comments[0].body)
+                let emptyArr = []
+                for (let i = 0; i < comments.length; i++) {
+                    var commenter = comments[i].commenter
+                    var body = comments[i].body
+
+
+                    var appendComments = `<figure class="nested">
+                       <blockquote class="blockquote">
+                         <p>${body}</p>
+                      </blockquote>
+                       <figcaption class="blockquote-footer">
+                         ${commenter}
+                       </figcaption>
+                     </figure>`
+
+                    // console.log(appendComments)
+                    emptyArr.push(appendComments)
+
+                }
+
+                document.getElementById("comments").innerHTML = emptyArr.join(" ")
+            })
         } else {
             alert(response.statusText);
         }
@@ -24,18 +59,19 @@ async function createComment(event) {
 }
 
 document
-    .querySelector("#create-post-btn")
+    .querySelector("#submitBtn")
     .addEventListener("click", createComment);
 
 //star
-async function fetchCommentsJSON() {
+
+async function reloadComments() {
     const response = await fetch('/api/comments');
     const comments = await response.json();
     // console.log(comments)
     return comments;
 
 }
-fetchCommentsJSON().then(comments => {
+reloadComments().then(comments => {
     comments;
     // console.log(comments[0].commenter)
     // console.log(comments[0].body)
@@ -45,14 +81,14 @@ fetchCommentsJSON().then(comments => {
         var body = comments[i].body
 
 
-        var appendComments = `<figure>
-           <blockquote class="blockquote">
-             <p>${body}</p>
-          </blockquote>
-           <figcaption class="blockquote-footer">
-             ${commenter}
-           </figcaption>
-         </figure>`
+        var appendComments = `<figure class="nested">
+               <blockquote class="blockquote">
+                 <p>${body}</p>
+              </blockquote>
+               <figcaption class="blockquote-footer">
+                 ${commenter}
+               </figcaption>
+             </figure>`
 
         // console.log(appendComments)
         emptyArr.push(appendComments)
@@ -62,6 +98,9 @@ fetchCommentsJSON().then(comments => {
     document.getElementById("comments").innerHTML = emptyArr.join(" ")
 })
 
+document
+    .querySelector("#reloadComments")
+    .addEventListener("click", reloadComments);
 
 
 
