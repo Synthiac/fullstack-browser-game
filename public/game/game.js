@@ -1,12 +1,12 @@
 var config = {
     type: Phaser.AUTO,
     width: 2000,
-    height: 3000,
+    height: 3500,
     parent: 'canvas',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 500 },
+            gravity: { y: 700 },
             debug: true
         }
     },
@@ -18,6 +18,9 @@ var config = {
         // add scale manager for full scene deployment
     }
 };
+
+
+
 var game = new Phaser.Game(config);
 
 
@@ -39,6 +42,7 @@ function preload() {
     this.load.image('skymid', '/assets/background2.png');
     this.load.image('skyfore', '/assets/background1.png');
     this.load.image('skyback', '/assets/background3.png');
+
 }
 
 
@@ -57,27 +61,33 @@ var moveCam = true;
 
 function create() {
 
+    this.cameras.main.zoom = 5;
+
     let mbg = this.add.image(0, 0, 'skymid');
     let bbg = this.add.image(0, 0, 'skyback');
     let fbg = this.add.image(0, 0, 'skyfore');
     // Align.scaleToGameW(bg, 2);
    
 
-
     var map = this.make.tilemap({key: 'map'});
     
 
-    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET' );
-
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 0 );
+    // const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
 
+
+
+    // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 2);  
     player = this.physics.add.sprite(1, 1600, 'king');
+
     var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 2);
+    midgrounds.setCollisionByProperty({ Collision: true })
 
     var foregrounds = map.createLayer('foreground', tileSet, 0, 2);
-    midgrounds.setCollisionByProperty({ Collision: true })
+   
     
     // this.player.setDepth(2)
     // midgrounds.setDepth(2)
@@ -113,9 +123,10 @@ function create() {
 
     
 
-    player.setBounce(0.2);
+    player.setBounce(0.1);
     player.setCollideWorldBounds(true);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.roundPixels = true;
     this.cameras.main.startFollow(player)
     // this.cameras.width(-32)
     // this.physics.add.collider(player, midgrounds);
@@ -175,7 +186,7 @@ function create() {
 
     bolt.children.iterate(function (child) {
 
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
 
     });
 
@@ -215,8 +226,15 @@ function update() {
         player.anims.play('turn');
     }
 
+    // if(cursors.right.isDown){
+    //     console.log(player.body.velocity.y)
+    // }
 
-    if (cursors.up.isDown && player.body.touching.down) {
+
+
+    if (cursors.up.isDown && player.body.velocity.y > -1.388888888888889 && player.body.velocity.y < 1.388888888888889) {
+        console.log(player.body.velocity.y)
+        // player.setVelocityY(0)
         player.setVelocityY(-330);
         player.anims.play('jump', true);
         // player.flipY = true;
@@ -242,6 +260,10 @@ function update() {
 // function collectBolt(player, bolt) {
 //     console.log("points up")
 //     bolt.disableBody(true, true);
+
+
+
+
 // };
 
     // This is the route that gets our comments
