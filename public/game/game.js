@@ -15,6 +15,13 @@ var config = {
         preload: preload,
         create: create,
         update: update
+    },
+    scale: {
+            parent: 'canvas',
+            mode: Phaser.Scale.FIT,
+            width: 1400,
+            height: 1400
+        
         // add scale manager for full scene deployment
     }
 };
@@ -53,57 +60,55 @@ var moveCam = true;
 
 function create() {
 
-    let bg = this.add.image(0, 0, 'sky');
-    // Align.scaleToGameW(bg, 2);
+   
+   
    
 
 
     var map = this.make.tilemap({key: 'map'});
+    this.add.image(0, 0, 'sky');
+    // sizing issure from map pixel count
     
 
     const tileSet = map.addTilesetImage('CleanedTileSet', 'terrain' );
-    // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
-    // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
+    // use as need for additional layering
+    // const backgroundLayer = map.createLayer('Background', tileSet, 0, 0);
+    // const interactiveLayer = map.createLayer('Interactive', tileSet, 0, 0);
     var ground = map.createLayer('Interactive', tileSet, 0, 0);
-    // this.player.setDepth(10)
-    // ground.setDepth(10)
-// this.physics.world.bounds.width = groundLayer.width;
-// this.physics.world.bounds.height = groundLayer.height;
 
     this.add.image(600, 250, 'cloud1');
     this.add.image(700, 150, 'cloud2');
     this.add.image(750, 400, 'cloud3');
     this.add.image(300, 450, 'cloud4');
 
-    // platforms = this.physics.add.staticGroup();
-    // clouds = this.physics.add.staticGroup();
+    platforms = this.physics.add.staticGroup();
+    clouds = this.physics.add.staticGroup();
 
-    // platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     
 
 
-    // movingPlatform = this.physics.add.image(400, 400, 'ground');
-    // movingPlatform.setImmovable(true);
-    // movingPlatform.body.allowGravity = false;
-    // movingPlatform.setVelocityX(50);
+    movingPlatform = this.physics.add.image(400, 400, 'ground');
+    movingPlatform.setImmovable(true);
+    movingPlatform.body.allowGravity = false;
+    movingPlatform.setVelocityX(50);
 
-    // clouds.create(500, 668, 'cloud1').setScale(2).refreshBody();
+    clouds.create(500, 668, 'cloud1').setScale(2).refreshBody();
     
-    // movingClouds = this.physics.add.image(500, 250, 'cloud1');
-    // movingClouds.setImmovable(true);
-    // movingClouds.body.allowGravity = false;
-    // movingClouds.setVelocityX(50);
+    movingClouds = this.physics.add.image(500, 250, 'cloud1');
+    movingClouds.setImmovable(true);
+    movingClouds.body.allowGravity = false;
+    movingClouds.setVelocityX(50);
     
 
-    player = this.physics.add.sprite(450, 400, 'king');
+    player = this.physics.add.sprite(200, 200, 'king');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
-    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-    this.cameras.main.startFollow(player)
-    this.physics.add.collider(player, groundLayer);
+    this.cameras.main.setBounds(0, 0, 1400, 1400);
+    this.cameras.main.startFollow(player);
     this.physics.add.collider(player, ground);
-    this.physics.add.collider(player, tile[0]);
+    this.physics.add.collider(player, movingPlatform);
 
     this.anims.create({
  
@@ -147,16 +152,16 @@ function create() {
     });
 
     
-    // this.physics.add.collider(bolt, platforms);
-    // this.physics.add.collider(bolt, movingPlatform);
-    // this.physics.add.collider(bolt, movingPlatform);
+    this.physics.add.collider(bolt, platforms);
+    this.physics.add.collider(bolt, movingPlatform);
+    this.physics.add.collider(bolt, movingPlatform);
 
-//     this.physics.add.overlap(player, bolt, collectBolt, null, this);
-//     theme = this.sound.add("theme");
-//     theme.play({
-//     volume: 0.2,
-//     loop: true
-//   });
+    this.physics.add.overlap(player, bolt, collectBolt, null, this);
+    theme = this.sound.add("theme");
+    theme.play({
+    volume: 0.2,
+    loop: true
+  });
 }
 
 
@@ -186,27 +191,27 @@ function update() {
         player.setVelocityY(-330);
     }
 
-    // if (movingPlatform.x >= 500) {
-    //     movingPlatform.setVelocityX(-50);
-    // }
-    // else if (movingPlatform.x <= 300) {
-    //     movingPlatform.setVelocityX(50);
-    // }
+    if (movingPlatform.x >= 500) {
+        movingPlatform.setVelocityX(-50);
+    }
+    else if (movingPlatform.x <= 300) {
+        movingPlatform.setVelocityX(50);
+    }
 }
-// function cloudMovement(){
-//     if (movingCloud.x >= 500) {
-//         movingCloud.setVelocityX(-50);
-//     }
-//     else if (movingCloud.x <= 300) {
-//         movingCloud.setVelocityX(50);
-//     }
-// }
+function cloudMovement(){
+    if (movingCloud.x >= 500) {
+        movingCloud.setVelocityX(-50);
+    }
+    else if (movingCloud.x <= 300) {
+        movingCloud.setVelocityX(50);
+    }
+}
 
-//action of picking up bolt, session or db relationship
-// function collectBolt(player, bolt) {
-//     console.log("points up")
-//     bolt.disableBody(true, true);
-// };
+// action of picking up bolt, session or db relationship
+function collectBolt(player, bolt) {
+    console.log("points up")
+    bolt.disableBody(true, true);
+};
 
     // This is the route that gets our comments
     // corresponds to in game event trigger
