@@ -1,3 +1,5 @@
+
+
 var config = {
     type: Phaser.AUTO,
     width: 2000,
@@ -7,7 +9,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 700 },
-            debug: true
+            debug: false
         }
     },
     scene: {
@@ -30,7 +32,7 @@ function preload() {
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
     this.load.image('bolt', '/assets/Bolt.png');
-    this.load.spritesheet('king', '/assets//character/kingSprites.png', { frameWidth: 19, frameHeight: 27 });
+    this.load.spritesheet('king', '/assets//character/king.png', { frameWidth: 20, frameHeight: 23 });
     this.load.image('cloud1', '/assets/cloud8.png');
     this.load.image('cloud2', '/assets/cloud7.png');
     this.load.image('cloud3', '/assets/cloud6.png');
@@ -42,6 +44,8 @@ function preload() {
     this.load.image('skymid', '/assets/background2.png');
     this.load.image('skyfore', '/assets/background1.png');
     this.load.image('skyback', '/assets/background3.png');
+
+    // this.load.objects("objects", '/assets/map/map.json', '/assets/map/map.tmx');
 
 }
 
@@ -57,9 +61,12 @@ var tileSet;
 var moveCam = true;
 
 
+// keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
+//  keySPACE.enabled = false;
 
 function create() {
+
 
     this.cameras.main.zoom = 5;
 
@@ -70,7 +77,7 @@ function create() {
    
 
     var map = this.make.tilemap({key: 'map'});
-    
+    const objectsLayer = map.getObjectLayer("objects")
 
     const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 0 );
     // const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
@@ -81,10 +88,14 @@ function create() {
 
     // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 2);  
-    player = this.physics.add.sprite(1, 1600, 'king');
+    
+    player = this.physics.add.sprite(200, 200, 'king');
 
     var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 2);
     midgrounds.setCollisionByProperty({ Collision: true })
+
+
+    
 
     var foregrounds = map.createLayer('foreground', tileSet, 0, 2);
    
@@ -121,10 +132,8 @@ function create() {
     // movingClouds.setVelocityX(50);
     
 
-    
 
-    player.setBounce(0.1);
-    player.setCollideWorldBounds(true);
+    
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.roundPixels = true;
     this.cameras.main.startFollow(player)
@@ -201,7 +210,23 @@ function create() {
 //     volume: 0.2,
 //     loop: true
 //   });
+
+
+objectsLayer.objects.foreach(objData => {
+    const { x = 0, y = 0, name } = objData
+
+    switch (name)
+    {
+        case "kingSpawn":
+        {
+            console.log(yeppers)
+             break;
+        }
+    }
+})
 }
+
+
 
 
 
@@ -212,14 +237,14 @@ function update() {
 
         player.anims.play('left', true);
         player.flipX = true;
-        player.body.setVelocityX(-180);
+        player.body.setVelocityX(-120);
     }
     else if (cursors.right.isDown) {
         player.setVelocityX(160);
 
         player.anims.play('right', true);
         player.flipX = false;
-        player.body.setVelocityX(180);
+        player.body.setVelocityX(120);
     }
     else {
         player.setVelocityX(0);
@@ -246,7 +271,10 @@ function update() {
     // else if (movingPlatform.x <= 300) {
     //     movingPlatform.setVelocityX(50);
     // }
+
+
 }
+
 // function cloudMovement(){
 //     if (movingCloud.x >= 500) {
 //         movingCloud.setVelocityX(-50);
