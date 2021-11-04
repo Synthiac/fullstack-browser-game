@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1400,
+    height: 1400,
     parent: 'canvas',
     physics: {
         default: 'arcade',
@@ -22,8 +22,7 @@ var game = new Phaser.Game(config);
 
 
 function preload() {
-    // this.load.image('tile', '/assests/map/mytileset.json'), embeded
-    this.load.tilemapTiledJSON('map', '/assets/map/map.json');
+    this.load.tilemapTiledJSON('map', '/assets/map/map.json', '/assets/map/map.tmx');
     this.load.image('terrain', '/assets/map/CleanedTileSet.png', '/assets/map/CleanedTileSet.json');
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
@@ -53,23 +52,28 @@ var moveCam = true;
 
 
 function create() {
+
+    let bg = this.add.image(0, 0, 'sky');
+    // Align.scaleToGameW(bg, 2);
+   
+
+
     var map = this.make.tilemap({key: 'map'});
     
 
-const tileSet = map.addTilesetImage('tileset', 'terrain' );
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'terrain' );
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
-var ground = map.createLayer('Interactive', tileSet, 0, 0);
+    var ground = map.createLayer('Interactive', tileSet, 0, 0);
     // this.player.setDepth(10)
     // ground.setDepth(10)
 // this.physics.world.bounds.width = groundLayer.width;
 // this.physics.world.bounds.height = groundLayer.height;
 
-    // this.add.image(400, 300, 'sky');
-    // this.add.image(600, 250, 'cloud1');
-    // this.add.image(700, 150, 'cloud2');
-    // this.add.image(750, 400, 'cloud3');
-    // this.add.image(300, 450, 'cloud4');
+    this.add.image(600, 250, 'cloud1');
+    this.add.image(700, 150, 'cloud2');
+    this.add.image(750, 400, 'cloud3');
+    this.add.image(300, 450, 'cloud4');
 
     // platforms = this.physics.add.staticGroup();
     // clouds = this.physics.add.staticGroup();
@@ -91,12 +95,18 @@ var ground = map.createLayer('Interactive', tileSet, 0, 0);
     // movingClouds.setVelocityX(50);
     
 
-    player = this.physics.add.sprite(80, 400, 'king');
+    player = this.physics.add.sprite(450, 400, 'king');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.startFollow(player)
+    this.physics.add.collider(player, groundLayer);
+    this.physics.add.collider(player, ground);
+    this.physics.add.collider(player, tile[0]);
 
     this.anims.create({
+ 
         key: 'left',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
         frameRate: 30,
@@ -136,8 +146,7 @@ var ground = map.createLayer('Interactive', tileSet, 0, 0);
 
     });
 
-    // this.physics.add.collider(player, platforms);
-    // this.physics.add.collider(player, movingPlatform);
+    
     // this.physics.add.collider(bolt, platforms);
     // this.physics.add.collider(bolt, movingPlatform);
     // this.physics.add.collider(bolt, movingPlatform);
