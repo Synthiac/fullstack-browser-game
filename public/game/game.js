@@ -1,13 +1,13 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1400,
-    height: 1400,
+    width: 2000,
+    height: 3000,
     parent: 'canvas',
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 500 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -23,18 +23,22 @@ var game = new Phaser.Game(config);
 
 function preload() {
     this.load.tilemapTiledJSON('map', '/assets/map/map.json', '/assets/map/map.tmx');
-    this.load.image('terrain', '/assets/map/CleanedTileSet.png', '/assets/map/CleanedTileSet.json');
+    this.load.image('TILESET', '/assets/map/CleanedTileSet.png', '/assets/map/CleanedTileSet.json');
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
     this.load.image('bolt', '/assets/Bolt.png');
-    this.load.spritesheet('king', '/assets/character.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('king', '/assets//character/kingSprites.png', { frameWidth: 19, frameHeight: 27 });
     this.load.image('cloud1', '/assets/cloud8.png');
     this.load.image('cloud2', '/assets/cloud7.png');
     this.load.image('cloud3', '/assets/cloud6.png');
     this.load.image('cloud4', '/assets/cloud5.png');
     this.load.image('lightning', '/assets/lightning.png'); 
     this.load.audio("theme", "/assets/theme.mp3");
-    
+    this.load.tilemapTiledJSON("foreground", '/assets/map/map.json', '/assets/map/map.tmx');
+    this.load.tilemapTiledJSON("background", '/assets/map/map.json', '/assets/map/map.tmx');
+    this.load.image('skymid', '/assets/background2.png');
+    this.load.image('skyfore', '/assets/background1.png');
+    this.load.image('skyback', '/assets/background3.png');
 }
 
 
@@ -53,7 +57,9 @@ var moveCam = true;
 
 function create() {
 
-    let bg = this.add.image(0, 0, 'sky');
+    let mbg = this.add.image(0, 0, 'skymid');
+    let bbg = this.add.image(0, 0, 'skyback');
+    let fbg = this.add.image(0, 0, 'skyfore');
     // Align.scaleToGameW(bg, 2);
    
 
@@ -61,12 +67,22 @@ function create() {
     var map = this.make.tilemap({key: 'map'});
     
 
-    const tileSet = map.addTilesetImage('CleanedTileSet', 'terrain' );
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET' );
+
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
-    var ground = map.createLayer('Interactive', tileSet, 0, 0);
-    // this.player.setDepth(10)
-    // ground.setDepth(10)
+
+    var backgrounds = map.createLayer('background', tileSet, 0, 2);  
+    player = this.physics.add.sprite(1, 1600, 'king');
+    var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 2);
+
+    var foregrounds = map.createLayer('foreground', tileSet, 0, 2);
+    midgrounds.setCollisionByProperty({ Collision: true })
+    
+    // this.player.setDepth(2)
+    // midgrounds.setDepth(2)
+    // foregrounds.setDepth(1)
+    // backgrounds.setDepth(3)
 // this.physics.world.bounds.width = groundLayer.width;
 // this.physics.world.bounds.height = groundLayer.height;
 
@@ -95,15 +111,32 @@ function create() {
     // movingClouds.setVelocityX(50);
     
 
-    player = this.physics.add.sprite(450, 400, 'king');
+    
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(player)
-    this.physics.add.collider(player, groundLayer);
-    this.physics.add.collider(player, ground);
-    this.physics.add.collider(player, tile[0]);
+    // this.cameras.width(-32)
+    // this.physics.add.collider(player, midgrounds);
+    this.physics.add.collider(player, midgrounds);
+    this.physics.add.staticGroup()
+    // this.physics.add.collider(player, tile[159]);
+    // this.physics.add.collider(player, tile[155]);
+    // this.physics.add.collider(player, tile[2147483803]);
+    // this.physics.add.collider(player, tile[157]);
+    // this.physics.add.collider(player, tile[343]);
+    // this.physics.add.collider(player, tile[2147483778]);
+    // this.physics.add.collider(player, tile[2147483802]);
+    // this.physics.add.collider(player, tile[157]);
+    // this.physics.add.collider(player, tile[157]);
+    // this.physics.add.collider(player, tile[157]);
+
+
+
+    
+    
+
 
     this.anims.create({
  
@@ -162,6 +195,7 @@ function create() {
 
 
 function update() {
+    
     if (cursors.left.isDown) {
         player.setVelocityX(-160);
 
@@ -178,12 +212,14 @@ function update() {
     }
     else {
         player.setVelocityX(0);
-
         player.anims.play('turn');
     }
 
+
     if (cursors.up.isDown && player.body.touching.down) {
         player.setVelocityY(-330);
+        player.anims.play('jump', true);
+        // player.flipY = true;
     }
 
     // if (movingPlatform.x >= 500) {
