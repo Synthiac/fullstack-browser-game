@@ -85,9 +85,9 @@ function create() {
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
 
-    createFromObjects(layerName, {
-        name: "sign"
-    })
+    // createFromObjects(layerName, {
+    //     name: "sign"
+    // })
 
     // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 0);  
