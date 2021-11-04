@@ -2,11 +2,6 @@ const User = require("./user");
 const Level = require("./level");
 const Comment = require("./comment");
 
-// basically
-// const levelComment = require("./levelComments");
-// const UserComment = require("./userComments");
-
-
 Comment.belongsTo(Level, {
     foreignKey: "level_id",
     onDelete: "CASCADE"
