@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 400,
     height: 600,
     parent: 'canvas',
     physics: {
@@ -53,6 +53,13 @@ var moveCam = true;
 
 
 function create() {
+
+    let bg = this.add.image(0, 0, 'sky');
+    // Align.scaleToGameW(bg, 2);
+    // this.cameras.main.setBounds(0, 0, bg.displayHeight, bg.displayWidth);
+    // this.cameras.main.startFollow(this.player)
+
+
     var map = this.make.tilemap({key: 'map'});
     
 
@@ -65,7 +72,6 @@ var ground = map.createLayer('Interactive', tileSet, 0, 0);
 // this.physics.world.bounds.width = groundLayer.width;
 // this.physics.world.bounds.height = groundLayer.height;
 
-    // this.add.image(400, 300, 'sky');
     // this.add.image(600, 250, 'cloud1');
     // this.add.image(700, 150, 'cloud2');
     // this.add.image(750, 400, 'cloud3');
@@ -97,6 +103,7 @@ var ground = map.createLayer('Interactive', tileSet, 0, 0);
     player.setCollideWorldBounds(true);
 
     this.anims.create({
+ 
         key: 'left',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
         frameRate: 30,
