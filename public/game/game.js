@@ -1,12 +1,12 @@
 var config = {
     type: Phaser.AUTO,
     width: 2000,
-    height: 3000,
+    height: 3500,
     parent: 'canvas',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 500 },
+            gravity: { y: 700 },
             debug: true
         }
     },
