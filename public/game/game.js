@@ -76,7 +76,7 @@ function create() {
     let fbg = this.add.image(0, 0, 'skyfore');
     // Align.scaleToGameW(bg, 2);
    
-    const objectsLayer = map.getObjectLayer("objects")
+    
     var map = this.make.tilemap({key: 'map'});
     
 
@@ -85,7 +85,9 @@ function create() {
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
 
-
+    createFromObjects(layerName, {
+        name: "sign"
+    })
 
     // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 0);  
