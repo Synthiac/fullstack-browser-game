@@ -23,7 +23,8 @@ body{
 
 canvas {
     align-self: center;
-    width: 1000px;
+    width: 500px;
+    height: 600px;
     order: 1;
     margin: 20px;
 }
