@@ -69,6 +69,7 @@ function create() {
 
 
     this.cameras.main.zoom = 5;
+    this.cameras.main.roundPixels = true;
 
     let mbg = this.add.image(0, 0, 'skymid');
     let bbg = this.add.image(0, 0, 'skyback');
@@ -79,7 +80,7 @@ function create() {
     var map = this.make.tilemap({key: 'map'});
     const objectsLayer = map.getObjectLayer("objects")
 
-    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 0 );
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 1 );
     // const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
@@ -87,17 +88,17 @@ function create() {
 
 
     // Place Pictures in order to have them display correctly
-    var backgrounds = map.createLayer('background', tileSet, 0, 2);  
+    var backgrounds = map.createLayer('background', tileSet, 0, 0);  
     
     player = this.physics.add.sprite(200, 200, 'king');
 
-    var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 2);
+    var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 0);
     midgrounds.setCollisionByProperty({ Collision: true })
 
 
     
 
-    var foregrounds = map.createLayer('foreground', tileSet, 0, 2);
+    var foregrounds = map.createLayer('foreground', tileSet, 0, 0);
    
     
     // this.player.setDepth(2)
@@ -210,21 +211,21 @@ function create() {
 //     volume: 0.2,
 //     loop: true
 //   });
-
-
-objectsLayer.objects.foreach(objData => {
-    const { x = 0, y = 0, name } = objData
-
-    switch (name)
-    {
-        case "kingSpawn":
-        {
-            console.log(yeppers)
-             break;
-        }
-    }
-})
 }
+
+// objectsLayer.objects.foreach(objData => {
+//     const { x = 0, y = 0, name } = objData
+
+//     switch (name)
+//     {
+//         case "kingSpawn":
+//         {
+//             console.log(yeppers)
+//              break;
+//         }
+//     }
+// })
+// }
 
 
 
