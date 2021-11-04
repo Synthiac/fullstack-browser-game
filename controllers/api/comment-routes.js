@@ -1,20 +1,31 @@
 const router = require("express").Router();
 const { User, Level, Comment } = require("../../models");
 
-//find all comments
-router.get("/:id", async (req, res) => {
+
+router.get("/", async (req, res) => {
     try {
         const allComments = await Comment.findAll({
-            attributes: ["id", "content", "user_id", "commenter"],
-            include: [
-                {
-                    model: User,
-                    as: "user",
-                    attributes: ["username"],
-                },
-            ],
+            attributes: ["id", "title", "body", "commenter"],
         })
         res.json(allComments);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+    //get all posts
+})
+
+//find comment by id 
+router.get("/:id", async (req, res) => {
+    try {
+        const oneComment = await Comment.findOne({
+            where: {
+                id: req.params.id,
+            },
+            attributes: ["id", "title", "body", "commenter"],
+        })
+        console.log(oneComment)
+        res.json(oneComment);
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
@@ -26,11 +37,13 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const createComment = await Comment.create({
-            comment_text: req.body.comment_text,
+            title: req.body.title,
+            body: req.body.body,
             user_id: req.session.user_id,
-            post_id: req.body.post_id,
+            commenter: req.session.username,
         })
-        res.json(createComment)
+        res.json(createComment);
+        console.log(createComment);
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
