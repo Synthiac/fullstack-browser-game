@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1200,
-    height: 1200,
+    width: 1400,
+    height: 1400,
     parent: 'canvas',
     physics: {
         default: 'arcade',
@@ -95,7 +95,7 @@ function create() {
     // movingClouds.setVelocityX(50);
     
 
-    player = this.physics.add.sprite(80, 400, 'king');
+    player = this.physics.add.sprite(450, 400, 'king');
 
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
@@ -103,6 +103,7 @@ function create() {
     this.cameras.main.startFollow(player)
     this.physics.add.collider(player, groundLayer);
     this.physics.add.collider(player, ground);
+    this.physics.add.collider(player, tile[0]);
 
     this.anims.create({
  
