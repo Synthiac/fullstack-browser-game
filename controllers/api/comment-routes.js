@@ -5,7 +5,7 @@ const { User, Level, Comment } = require("../../models");
 router.get("/", async (req, res) => {
     try {
         const allComments = await Comment.findAll({
-            attributes: ["id", "title", "body", "commenter"],
+            attributes: ["id", "body", "commenter"],
         })
         res.json(allComments);
     } catch (err) {
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            attributes: ["id", "title", "body", "commenter"],
+            attributes: ["id", "body", "commenter"],
         })
         console.log(oneComment)
         res.json(oneComment);
