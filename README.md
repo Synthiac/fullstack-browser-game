@@ -7,7 +7,8 @@
 
 [Heroku Deployed Link](https://young-castle-31920.herokuapp.com/#)
 
-
+![DeployedGif](./public/assets/unnamed.gif)
+![CodeImage](./public/assets/unnamed.png)
 
 ### Prerequisites
 
