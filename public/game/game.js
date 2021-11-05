@@ -3,12 +3,12 @@
 var config = {
     type: Phaser.AUTO,
     width: 2000,
-    height: 3500,
+    height: 2000,
     parent: 'canvas',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 700 },
+            gravity: { y: 800 },
             debug: false
         }
     },
@@ -76,16 +76,18 @@ function create() {
     let fbg = this.add.image(0, 0, 'skyfore');
     // Align.scaleToGameW(bg, 2);
    
-
+    
     var map = this.make.tilemap({key: 'map'});
-    const objectsLayer = map.getObjectLayer("objects")
+    
 
-    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 1 );
+    const tileSet = map.addTilesetImage('CleanedTileSet', 'TILESET', 16, 16, 0, 0 );
     // const tileset = map.addTilesetImage("tileset", "tileset-extruded", 48, 48, 1, 2);
     // const backgroundLayer = map.createStaticLayer('Background', tileset, 0, 0);
     // const interactiveLayer = map.createLayer('Interactive', tileset, 0, 0);
 
-
+    // createFromObjects(layerName, {
+    //     name: "sign"
+    // })
 
     // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 0);  
