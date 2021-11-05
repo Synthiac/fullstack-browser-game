@@ -67,19 +67,6 @@ router.post("/create", async (req, res) => {
     //add/create user
 })
 
-
-router.post("/", (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            // end the session
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
-//if we want logout functionality
-
 router.get("/:id", async (req, res) => {
     try {
         const oneUser = await User.findOne({
