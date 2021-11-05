@@ -203,8 +203,8 @@ function create() {
     });
 
     
-    // this.physics.add.collider(bolt, platforms);
-    // this.physics.add.collider(bolt, movingPlatform);
+    this.physics.add.collider(bolt, midgrounds);
+    this.physics.add.collider(bolt, player, collectBolt);
     // this.physics.add.collider(bolt, movingPlatform);
 
 //     this.physics.add.overlap(player, bolt, collectBolt, null, this);
@@ -288,11 +288,10 @@ function update() {
 // }
 
 //action of picking up bolt, session or db relationship
-// function collectBolt(player, bolt) {
-//     console.log("points up")
-//     bolt.disableBody(true, true);
-
-
+function collectBolt(player, bolt) {
+    console.log("points up")
+    bolt.disableBody(true, true);
+}
 
 
 // };
