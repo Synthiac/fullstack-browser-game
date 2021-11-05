@@ -31,7 +31,8 @@ function preload() {
     this.load.image('TILESET', '/assets/map/CleanedTileSet.png', '/assets/map/CleanedTileSet.json');
     this.load.image('sky', '/assets/background3.png');
     this.load.image('ground', '/assets/platform.png');
-    this.load.image('bolt', '/assets/Bolt.png');
+    this.load.image('bolt1', '/assets/Bolt.png');
+    this.load.image('bolt2', '/assets/Bolt.png');
     this.load.spritesheet('king', '/assets//character/king.png', { frameWidth: 20, frameHeight: 23 });
     this.load.image('cloud1', '/assets/cloud8.png');
     this.load.image('cloud2', '/assets/cloud7.png');
@@ -52,6 +53,8 @@ function preload() {
 
 var player;
 var bolt;
+var bolt1;
+var bolt2;
 var platforms;
 var cursors;
 var movingPlatform;
@@ -145,32 +148,16 @@ function create() {
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.roundPixels = true;
     this.cameras.main.startFollow(player)
-    // this.cameras.width(-32)
-    // this.physics.add.collider(player, midgrounds);
+  
     this.physics.add.collider(player, midgrounds);
     this.physics.add.staticGroup()
-    // this.physics.add.collider(player, tile[159]);
-    // this.physics.add.collider(player, tile[155]);
-    // this.physics.add.collider(player, tile[2147483803]);
-    // this.physics.add.collider(player, tile[157]);
-    // this.physics.add.collider(player, tile[343]);
-    // this.physics.add.collider(player, tile[2147483778]);
-    // this.physics.add.collider(player, tile[2147483802]);
-    // this.physics.add.collider(player, tile[157]);
-    // this.physics.add.collider(player, tile[157]);
-    // this.physics.add.collider(player, tile[157]);
-
-
-
-    
-    
-
+  
 
     this.anims.create({
  
         key: 'left',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
-        frameRate: 30,
+        frameRate: 10,
         repeat: -1
         
     });
@@ -178,46 +165,54 @@ function create() {
     this.anims.create({
         key: 'turn',
         frames: [{ key: 'king', frame: 5 }],
-        frameRate: 30
+        frameRate: 10
     });
     this.anims.create({
         key: 'jump',
         frames: [{ key: 'king', start: 6, end: 10 }],
-        frameRate: 30
+        frameRate: 10
     });
 
     this.anims.create({
         key: 'right',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
-        frameRate: 30,
+        frameRate: 10,
         repeat: -1
     });
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    
     bolt1 = this.physics.add.group({
-        // id: 1++,
-        key: 'bolt',
-        // id: 1,
-        // repeat: 1,
-        setXY: { x: 665, y: 2750},
+        key: 'bolt1',
+        repeat: 1,
+        setXY: { x: 500, y: 0, stepX: 70 }
     });
 
-    // bolt.children.iterate(function (child) {
+    bolt2 = this.physics.add.group({
+        key: 'bolt2',
+        repeat: 1,
+        setXY: { x: 700, y: 0, stepX: 70 }
+    });
 
-    //     child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
+    bolt1.children.iterate(function (child) {
 
-    // });
+        child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
 
-    this.physics.add.collider(bolt1, midgrounds);
+    });
+
+    bolt2.children.iterate(function (child) {
+
+        child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
+
+    });
+
+    // this.physics.add.collider(bolt1, midgrounds);
     
+    this.physics.add.collider(bolt1, midgrounds);
+    this.physics.add.collider(bolt1, player, collectBolt1);
 
-
-
-
-    // this.physics.add.collider(bolt, platforms);
-    // this.physics.add.collider(bolt, movingPlatform);
+    this.physics.add.collider(bolt2, midgrounds);
+    this.physics.add.collider(bolt2, player, collectBolt2);
     // this.physics.add.collider(bolt, movingPlatform);
 
 //     this.physics.add.overlap(player, bolt, collectBolt, null, this);
@@ -339,8 +334,16 @@ function update() {
 //     }
 // }
 
-// action of picking up bolt, session or db relationship
+//action of picking up bolt, session or db relationship
+function collectBolt1(player, bolt1) {
+    console.log("comment");
+    bolt1.disableBody(true, true);
+}
 
+function collectBolt2(player, bolt2) {
+    console.log("comment2");
+    bolt2.disableBody(true, true);
+}
 
     // This is the route that gets our comments
     // corresponds to in game event trigger

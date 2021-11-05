@@ -83,8 +83,14 @@ async function loginForm(event) {
         });
 
         if (response.ok) {
-            console.log(response, " Logged in successfully!");
+            console.log("Logged in successfully!");
+            console.log(JSON.stringify(username))
             loginModal.setAttribute("style", "display: none")
+            //appending username to page
+            let displayUser = document.createElement("div")
+            displayUser.innerHTML = JSON.stringify(username)
+            displayUser.setAttribute("style", "color: green")
+            document.body.appendChild(displayUser)
             // document.location.replace("/");
         } else {
             alert(response.statusText);
@@ -131,6 +137,10 @@ async function signupForm(event) {
     if (responseTwo.ok) {
         alert("Signed up & Logged in successfully!");
         loginModal.setAttribute("style", "display: none")
+        let displayUser = document.createElement("div")
+        displayUser.innerHTML = JSON.stringify(username)
+        displayUser.setAttribute("style", "color: green")
+        document.body.appendChild(displayUser)
     } else {
         //alert sending response from login attempt
         alert(responseTwo.statusText);
@@ -145,3 +155,85 @@ document
 document
     .querySelector("#signupBtn")
     .addEventListener("click", signupForm);
+
+
+// async function logout() {
+//     const response = await fetch("/api/users/logout", {
+//         method: "POST",
+//         headers: { "content-type": "application/json" },
+//     });
+
+//     if (response.ok) {
+//         document.location.replace("/");
+//     } else {
+//         alert(response.statusText);
+//     }
+// }
+
+// document.querySelector("#deleteBtn").addEventListener("click", logout);
+
+// const handleDeleteComment = async (event) => {
+//     event.preventDefault();
+
+//     const id = document.getElementById("duck").value.trim();
+//     console.log(id)
+
+//     const response = await fetch(`/api/comments/${id}`, {
+//         method: 'DELETE'
+//     });
+
+//     if (response.ok) {
+//         async function reloadComments() {
+//             const response = await fetch('/api/comments');
+//             const comments = await response.json();
+//             // console.log(comments)
+//             return comments;
+
+//         }
+//         reloadComments().then(comments => {
+//             comments;
+//             // console.log(comments[0].commenter)
+//             // console.log(comments[0].body)
+//             let emptyArr = []
+//             for (let i = 0; i < comments.length; i++) {
+//                 var commenter = comments[i].commenter
+//                 var body = comments[i].body
+//                 var id = comments[i].id
+//                 // console.log(id);
+
+
+//                 var appendComments = `<figure class="nested">
+//                        <blockquote class="blockquote">
+//                          <p>${body}</p>
+//                       </blockquote>
+//                        <figcaption class="blockquote-footer" id="commenter">
+//                          ${commenter}    
+//                        </figcaption>
+//                        <figcaption class="blockquote-footer" id="duck">
+//                         ${id}
+//                        </figcaption>
+//                        <button id= "${id}" class="deleteBtn">Delete</button>
+//                      </figure>`
+
+//                 // console.log(appendComments)
+//                 emptyArr.push(appendComments)
+
+//             }
+
+//             document.getElementById("comments").innerHTML = emptyArr.join(" ")
+//         })
+//         alert('Comment successfully deleted!');
+//     }
+// }
+// // if (document.getElementById("${ id }"))
+
+//     // add event listener to 'delete post' button
+//     if (document.getElementById("comments").childNodes[0]) {
+
+//         for (var i = 0; i < (document.getElementById("comments").childNodes[0]).length; i++) {
+//             console.log(document.getElementById("comments").childNodes[0])
+
+//         }
+//         // let deleteBtn = document.getElementsByClassName('deleteBtn');
+//         // deleteBtn.addEventListener("click", console.log("duck"));
+//     }
