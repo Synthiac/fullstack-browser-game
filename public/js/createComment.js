@@ -63,6 +63,8 @@ document
 
 //star
 
+
+
 async function reloadComments() {
     const response = await fetch('/api/comments');
     const comments = await response.json();
