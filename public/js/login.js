@@ -168,64 +168,68 @@ document
 
 // document.querySelector("#deleteBtn").addEventListener("click", logout);
 
-const handleDeleteComment = async (event) => {
-    event.preventDefault();
+// const handleDeleteComment = async (event) => {
+//     event.preventDefault();
 
-    const id = document.getElementById("duck").value.trim();
-    console.log(id)
+//     const id = document.getElementById("duck").value.trim();
+//     console.log(id)
 
-    const response = await fetch(`/api/comments/${id}`, {
-        method: 'DELETE'
-    });
+//     const response = await fetch(`/api/comments/${id}`, {
+//         method: 'DELETE'
+//     });
 
-    if (response.ok) {
-        async function reloadComments() {
-            const response = await fetch('/api/comments');
-            const comments = await response.json();
-            // console.log(comments)
-            return comments;
+//     if (response.ok) {
+//         async function reloadComments() {
+//             const response = await fetch('/api/comments');
+//             const comments = await response.json();
+//             // console.log(comments)
+//             return comments;
 
-        }
-        reloadComments().then(comments => {
-            comments;
-            // console.log(comments[0].commenter)
-            // console.log(comments[0].body)
-            let emptyArr = []
-            for (let i = 0; i < comments.length; i++) {
-                var commenter = comments[i].commenter
-                var body = comments[i].body
-                var id = comments[i].id
-                // console.log(id);
+//         }
+//         reloadComments().then(comments => {
+//             comments;
+//             // console.log(comments[0].commenter)
+//             // console.log(comments[0].body)
+//             let emptyArr = []
+//             for (let i = 0; i < comments.length; i++) {
+//                 var commenter = comments[i].commenter
+//                 var body = comments[i].body
+//                 var id = comments[i].id
+//                 // console.log(id);
 
 
-                var appendComments = `<figure class="nested">
-                       <blockquote class="blockquote">
-                         <p>${body}</p>
-                      </blockquote>
-                       <figcaption class="blockquote-footer" id="commenter">
-                         ${commenter}    
-                       </figcaption>
-                       <figcaption class="blockquote-footer" id="duck">
-                        ${id}
-                       </figcaption>
-                       <button id="deleteBtn">Delete</button>
-                     </figure>`
+//                 var appendComments = `<figure class="nested">
+//                        <blockquote class="blockquote">
+//                          <p>${body}</p>
+//                       </blockquote>
+//                        <figcaption class="blockquote-footer" id="commenter">
+//                          ${commenter}    
+//                        </figcaption>
+//                        <figcaption class="blockquote-footer" id="duck">
+//                         ${id}
+//                        </figcaption>
+//                        <button id= "${id}" class="deleteBtn">Delete</button>
+//                      </figure>`
 
-                // console.log(appendComments)
-                emptyArr.push(appendComments)
+//                 // console.log(appendComments)
+//                 emptyArr.push(appendComments)
 
-            }
+//             }
 
-            document.getElementById("comments").innerHTML = emptyArr.join(" ")
-        })
-        alert('Comment successfully deleted!');
-    }
-};
+//             document.getElementById("comments").innerHTML = emptyArr.join(" ")
+//         })
+//         alert('Comment successfully deleted!');
+//     }
+// }
+// // if (document.getElementById("${ id }"))
 
-// add event listener to 'delete post' button
-if (document.querySelector('#deleteBtn')) {
+//     // add event listener to 'delete post' button
+//     if (document.getElementById("comments").childNodes[0]) {
 
-    document
-        .querySelector('#deleteBtn')
-        .addEventListener("click", handleDeleteComment);
-}
+//         for (var i = 0; i < (document.getElementById("comments").childNodes[0]).length; i++) {
+//             console.log(document.getElementById("comments").childNodes[0])
+
+//         }
+//         // let deleteBtn = document.getElementsByClassName('deleteBtn');
+//         // deleteBtn.addEventListener("click", console.log("duck"));
+//     }

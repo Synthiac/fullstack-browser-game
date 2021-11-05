@@ -34,17 +34,20 @@ async function createComment(event) {
                 for (let i = 0; i < comments.length; i++) {
                     var commenter = comments[i].commenter
                     var body = comments[i].body
-
+                    var id = comments[i].id;
 
                     var appendComments = `<figure class="nested">
-                       <blockquote class="blockquote">
-                         <p>${body}</p>
-                      </blockquote>
-                       <figcaption class="blockquote-footer">
-                         ${commenter}
-                       </figcaption>
-                     </figure>`
-
+                    <blockquote class="blockquote">
+                      <p>${body}</p>
+                   </blockquote>
+                    <figcaption class="blockquote-footer" id="commenter">
+                      ${commenter}    
+                    </figcaption>
+                    <figcaption class="blockquote-footer" id="duck">
+                     ${id}
+                    </figcaption>
+                    <button class="deleteBtn">Delete</button>
+                  </figure>`
                     // console.log(appendComments)
                     emptyArr.push(appendComments)
 
@@ -93,7 +96,6 @@ reloadComments().then(comments => {
                <figcaption  id="duck">
                 ${id}
                </figcaption>
-               <button id="deleteBtn">Delete</button>
              </figure>`
 
         // console.log(appendComments)
