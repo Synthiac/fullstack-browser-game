@@ -16,9 +16,13 @@ async function createComment(event) {
         console.log(body)
         if (response.ok) {
             console.log(response)
+
+            
             // window.location.replace("/")
             // let nested = document.getElementsByClassName("nested")
             // document.getElementById("comments").removeChild(nested);
+
+
             async function fetchCommentsJSON() {
                 const response = await fetch('/api/comments');
                 const comments = await response.json();
@@ -26,6 +30,12 @@ async function createComment(event) {
                 return comments;
 
             }
+
+
+
+
+
+            
             fetchCommentsJSON().then(comments => {
                 comments;
                 // console.log(comments[0].commenter)

@@ -15,6 +15,15 @@
 
 
 
+
+#signupBtn {
+  display: none
+}
+
+#loginBtn {
+  display:none
+}
+
 body{
     display:flex;
     flex-direction: column;

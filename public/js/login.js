@@ -43,8 +43,14 @@ if (document.getElementById("signUpDiv")) {
                 .getElementById("signUpForm")
                 .setAttribute("style", "display: flex");
             document
+                .getElementById("signupBtn")
+                .setAttribute("style", "display: flex");
+            document
                 .getElementById("signInForm")
-                .setAttribute("style", "display: none")
+                .setAttribute("style", "display: none");
+                document
+                .getElementById("loginBtn")
+                .setAttribute("style", "display: none");
         });
 };
 
@@ -58,8 +64,14 @@ if (document.getElementById("signInDiv")) {
                 .getElementById("signInForm")
                 .setAttribute("style", "display: flex");
             document
+                .getElementById("loginBtn")
+                .setAttribute("style", "display: flex");
+            document
                 .getElementById("signUpForm")
-                .setAttribute("style", "display: none")
+                .setAttribute("style", "display: none");
+                document
+                .getElementById("signupBtn")
+                .setAttribute("style", "display: none");
         });
 };
 
@@ -89,8 +101,13 @@ async function loginForm(event) {
             //appending username to page
             let displayUser = document.createElement("div")
             displayUser.innerHTML = JSON.stringify(username)
-            displayUser.setAttribute("style", "color: green")
-            document.body.appendChild(displayUser)
+            displayUser.setAttribute("style", "color: var(--lime)")
+            document.getElementById("navbarSupportedContent").appendChild(displayUser)
+
+            document.querySelector("#email-login").value = ""
+            document.querySelector("#password-login").value = ""
+
+
             // document.location.replace("/");
         } else {
             alert(response.statusText);
@@ -139,8 +156,14 @@ async function signupForm(event) {
         loginModal.setAttribute("style", "display: none")
         let displayUser = document.createElement("div")
         displayUser.innerHTML = JSON.stringify(username)
-        displayUser.setAttribute("style", "color: green")
-        document.body.appendChild(displayUser)
+        displayUser.setAttribute("style", "color: var(--lime)")
+        document.getElementById("navbarSupportedContent").appendChild(displayUser)
+
+        document.querySelector("#name-signup").value = ""
+        document.querySelector("#email-signup").value = ""
+        document.querySelector("#password-signup").value = ""
+
+
     } else {
         //alert sending response from login attempt
         alert(responseTwo.statusText);
