@@ -1,5 +1,10 @@
 
 
+commentFetch = async function(){
+    $.get("/", async (req, res) => {
+    console.log(res)})
+ }
+
 var config = {
     type: Phaser.AUTO,
     width: 2000,
@@ -292,11 +297,18 @@ function update() {
 function collectBolt1(player, bolt1) {
     console.log("comment");
     bolt1.disableBody(true, true);
+    commentFetch()
 }
 
 function collectBolt2(player, bolt2) {
     console.log("comment2");
     bolt2.disableBody(true, true);
+
+    commentFetch()
+    // win = this.sound.add("win");
+    // win.play({
+    // volume: 0.2,
+
 }
 
 
