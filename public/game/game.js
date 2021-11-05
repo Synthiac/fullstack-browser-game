@@ -216,12 +216,12 @@ function create() {
     this.physics.add.collider(bolt2, player, collectBolt2);
     // this.physics.add.collider(bolt, movingPlatform);
 
-//     this.physics.add.overlap(player, bolt, collectBolt, null, this);
-//     theme = this.sound.add("theme");
-//     theme.play({
-//     volume: 0.2,
-//     loop: true
-//   });
+    this.physics.add.overlap(player, bolt, collectBolt, null, this);
+    theme = this.sound.add("theme");
+    theme.play({
+    volume: 0.2,
+    loop: true
+  });
 }
 
 // objectsLayer.objects.foreach(objData => {
