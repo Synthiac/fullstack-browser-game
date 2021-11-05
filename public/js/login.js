@@ -100,7 +100,7 @@ async function loginForm(event) {
             loginModal.setAttribute("style", "display: none")
             //appending username to page
             let displayUser = document.createElement("div")
-            displayUser.innerHTML = JSON.stringify(username)
+            displayUser.innerHTML = "Welcome! " + JSON.stringify(username)
             displayUser.setAttribute("style", "color: var(--lime)")
             document.getElementById("navbarSupportedContent").appendChild(displayUser)
 
@@ -155,7 +155,7 @@ async function signupForm(event) {
         alert("Signed up & Logged in successfully!");
         loginModal.setAttribute("style", "display: none")
         let displayUser = document.createElement("div")
-        displayUser.innerHTML = JSON.stringify(username)
+        displayUser.innerHTML = "Welcome! " + JSON.stringify(username)
         displayUser.setAttribute("style", "color: var(--lime)")
         document.getElementById("navbarSupportedContent").appendChild(displayUser)
 
