@@ -26,6 +26,12 @@ async function createComment(event) {
                 return comments;
 
             }
+
+
+
+
+
+            
             fetchCommentsJSON().then(comments => {
                 comments;
                 // console.log(comments[0].commenter)
