@@ -8,7 +8,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 800 },
+            gravity: { y: 750 },
             debug: false
         }
     },
@@ -69,9 +69,13 @@ var moveCam = true;
 //  keySPACE.enabled = false;
 
 function create() {
+  
+    // King -Player Sprite and spawn location x, y
+    
 
 
-    this.cameras.main.zoom = 5;
+
+    this.cameras.main.zoom = 4;
     this.cameras.main.roundPixels = true;
 
     let mbg = this.add.image(0, 0, 'skymid');
@@ -95,16 +99,17 @@ function create() {
     // Place Pictures in order to have them display correctly
     var backgrounds = map.createLayer('background', tileSet, 0, 0);  
     
-    player = this.physics.add.sprite(200, 200, 'king');
+    
+    player = this.physics.add.sprite(570, 2750, 'king');
 
     var midgrounds = map.createLayer('Tile Layer 1', tileSet, 0, 0);
     midgrounds.setCollisionByProperty({ Collision: true })
 
 
-    
-
     var foregrounds = map.createLayer('foreground', tileSet, 0, 0);
-   
+ 
+
+
     
     // this.player.setDepth(2)
     // midgrounds.setDepth(2)
@@ -152,7 +157,7 @@ function create() {
  
         key: 'left',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
-        frameRate: 30,
+        frameRate: 10,
         repeat: -1
         
     });
@@ -160,18 +165,18 @@ function create() {
     this.anims.create({
         key: 'turn',
         frames: [{ key: 'king', frame: 5 }],
-        frameRate: 30
+        frameRate: 10
     });
     this.anims.create({
         key: 'jump',
         frames: [{ key: 'king', start: 6, end: 10 }],
-        frameRate: 30
+        frameRate: 10
     });
 
     this.anims.create({
         key: 'right',
         frames: this.anims.generateFrameNumbers('king', { start: 1, end: 4 }),
-        frameRate: 30,
+        frameRate: 10,
         repeat: -1
     });
 
@@ -194,12 +199,14 @@ function create() {
         child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
 
     });
+
     bolt2.children.iterate(function (child) {
 
         child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.2));
 
     });
 
+    // this.physics.add.collider(bolt1, midgrounds);
     
     this.physics.add.collider(bolt1, midgrounds);
     this.physics.add.collider(bolt1, player, collectBolt1);
@@ -214,6 +221,28 @@ function create() {
 //     volume: 0.2,
 //     loop: true
 //   });
+
+
+
+
+// boltCollect(game)
+// function boltCollect(game) {
+ 
+    //     var bolt= game.data.immovable = game.add.sprite(game.world.centerX - 32, game.world.centerY - 32, 'blocks', 0);
+    //     imm.width = 64;
+    //     imm.height = 64;
+
+    //     // enable physics and set immovable
+        // game.physics.enable(imm);
+        // imm.body.immovable = true;
+        // 
+    //      bolt.disableBody(true, true)
+
+
+
+
+
+    // };
 }
 
 // objectsLayer.objects.foreach(objData => {
@@ -262,7 +291,7 @@ function update() {
 
 
     if (cursors.up.isDown && player.body.velocity.y > -1.388888888888889 && player.body.velocity.y < 1.388888888888889) {
-        console.log(player.body.velocity.y)
+        // console.log(player.body.velocity.y)
         // player.setVelocityY(0)
         player.setVelocityY(-330);
         player.anims.play('jump', true);
@@ -277,6 +306,23 @@ function update() {
     // }
 
 
+    this.physics.add.collider(player, bolt1);
+    
+    // (player, bolt) => {
+    //     console.log(player, bolt)
+    // }
+
+    // var console = function(){console.log(bolt)}
+
+
+    
+
+
+    collectBolt = function(player,bolt1){
+        console.log("bolt");
+        bolt.disableBody(true, true);
+    }
+    
 }
 
 // function cloudMovement(){
@@ -299,9 +345,6 @@ function collectBolt2(player, bolt2) {
     bolt2.disableBody(true, true);
 }
 
-
-// };
-
     // This is the route that gets our comments
     // corresponds to in game event trigger
     // if(){
@@ -309,4 +352,7 @@ function collectBolt2(player, bolt2) {
     //         method: "GET"
     //     })
     // }
+
+
+
 
