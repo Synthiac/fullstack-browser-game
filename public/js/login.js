@@ -137,6 +137,10 @@ async function signupForm(event) {
     if (responseTwo.ok) {
         alert("Signed up & Logged in successfully!");
         loginModal.setAttribute("style", "display: none")
+        let displayUser = document.createElement("div")
+        displayUser.innerHTML = JSON.stringify(username)
+        displayUser.setAttribute("style", "color: green")
+        document.body.appendChild(displayUser)
     } else {
         //alert sending response from login attempt
         alert(responseTwo.statusText);

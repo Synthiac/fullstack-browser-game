@@ -43,10 +43,6 @@ async function createComment(event) {
                     <figcaption class="blockquote-footer" id="commenter">
                       ${commenter}    
                     </figcaption>
-                    <figcaption class="blockquote-footer" id="duck">
-                     ${id}
-                    </figcaption>
-                    <button class="deleteBtn">Delete</button>
                   </figure>`
                     // console.log(appendComments)
                     emptyArr.push(appendComments)
@@ -92,9 +88,6 @@ reloadComments().then(comments => {
               </blockquote>
                <figcaption class="blockquote-footer" id="commenter">
                  ${commenter}    
-               </figcaption>
-               <figcaption  id="duck">
-                ${id}
                </figcaption>
              </figure>`
 
