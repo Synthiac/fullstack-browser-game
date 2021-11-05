@@ -25,9 +25,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-    "jquery": "^3.6.0",
     "mysql2": "^2.3.2",
-    "sequelize": "^6.8.0",
-    "tile-extruder": "^2.1.0"
+    "sequelize": "^6.8.0"
   }
 }
