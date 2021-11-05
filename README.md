@@ -2,11 +2,10 @@
  A fullstack Browser Game with SQL backed player interaction.
 
 
-Running game        -Gavin
 
-Styling front end   -May
+[GoogleSide Presentation](https://docs.google.com/presentation/d/11AZ3U6Gl2ofjShqafD3AbKC4HX69D4sV1UDchMFT6Gs/edit#slide=id.g1007aae7ffc_1_0)
 
-back end            -Derek
+[Heroku Deployed Link](https://young-castle-31920.herokuapp.com/#)
 
 
 
