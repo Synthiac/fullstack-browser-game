@@ -1,11 +1,5 @@
 
 
-// commentFetch = async function(){
-//     fetch('https://young-castle-31920.herokuapp.com/')
-//   .then(response => response.json())
-//   .then(data => console.log(data));
-//  }
-
 var config = {
     type: Phaser.AUTO,
     width: 2000,
@@ -46,8 +40,6 @@ function preload() {
     this.load.image('cloud4', '/assets/cloud5.png');
     this.load.image('lightning', '/assets/lightning.png'); 
     this.load.audio("theme", "/assets/theme.mp3");
-    this.load.audio('jump', '/assets/jump.mp3')
-    this.load.audio('pickup', '/assets/pickup.mp3')
     this.load.tilemapTiledJSON("foreground", '/assets/map/map.json', '/assets/map/map.tmx');
     this.load.tilemapTiledJSON("background", '/assets/map/map.json', '/assets/map/map.tmx');
     this.load.image('skymid', '/assets/background2.png');
@@ -187,14 +179,14 @@ function create() {
 
     bolt1 = this.physics.add.group({
         key: 'bolt1',
-        repeat: 0,
-        setXY: { x: 300, y: 0, stepX: 70 }
+        repeat: 1,
+        setXY: { x: 500, y: 0, stepX: 70 }
     });
 
     bolt2 = this.physics.add.group({
         key: 'bolt2',
-        repeat: 0,
-        setXY: { x: 600, y: 0, stepX: 70 }
+        repeat: 1,
+        setXY: { x: 700, y: 0, stepX: 70 }
     });
 
     bolt1.children.iterate(function (child) {
@@ -216,12 +208,12 @@ function create() {
     this.physics.add.collider(bolt2, player, collectBolt2);
     // this.physics.add.collider(bolt, movingPlatform);
 
-    this.physics.add.overlap(player, bolt, collectBolt, null, this);
-    theme = this.sound.add("theme");
-    theme.play({
-    volume: 0.2,
-    loop: true
-  });
+//     this.physics.add.overlap(player, bolt, collectBolt, null, this);
+//     theme = this.sound.add("theme");
+//     theme.play({
+//     volume: 0.2,
+//     loop: true
+//   });
 }
 
 // objectsLayer.objects.foreach(objData => {
@@ -274,9 +266,6 @@ function update() {
         // player.setVelocityY(0)
         player.setVelocityY(-330);
         player.anims.play('jump', true);
-        jump = this.sound.add("jump");
-        jump.play({
-        volume: 0.5,})
         // player.flipY = true;
     }
 
@@ -303,21 +292,11 @@ function update() {
 function collectBolt1(player, bolt1) {
     console.log("comment");
     bolt1.disableBody(true, true);
-    commentFetch()
-    pickup = this.sound.add("pickup");
-    pickup.play({
-    volume: 0.5,})
 }
 
 function collectBolt2(player, bolt2) {
     console.log("comment2");
     bolt2.disableBody(true, true);
-
-    commentFetch()
-    pickup = this.sound.add("pickup");
-    pickup.play({
-    volume: 0.5,})
-
 }
 
 
